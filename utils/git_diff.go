@@ -1,4 +1,4 @@
-package worddiff
+package utils
 
 import (
 	"bufio"
@@ -10,10 +10,6 @@ import (
 	"strings"
 )
 
-func wordDiff(actual, expected string) (coloredDiff string, err error) {
-	return gitDiff(actual, expected, "--word-diff=color")
-}
-
 func hasAnyPrefix(actual string, prefixes ...string) bool {
 	for _, prefix := range prefixes {
 		if strings.HasPrefix(actual, prefix) {
@@ -23,7 +19,7 @@ func hasAnyPrefix(actual string, prefixes ...string) bool {
 	return false
 }
 
-func gitDiff(actual, expected string, args ...string) (coloredDiff string, err error) {
+func GitDiff(actual, expected string, args ...string) (coloredDiff string, err error) {
 
 	tmpFileActual, err := tempFileWithContents("", "actual", []byte(actual))
 	if err != nil {

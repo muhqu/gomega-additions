@@ -1,4 +1,4 @@
-package worddiff
+package unifieddiff
 
 import (
 	"github.com/muhqu/gomega-additions/utils"
@@ -21,7 +21,7 @@ func (m *jsonMatcher) Match(actual interface{}) (success bool, err error) {
 }
 
 func (m *jsonMatcher) FailureMessage(actual interface{}) (message string) {
-	coloredDiff, err := utils.GitDiff(m.PrettyActual, m.PrettyExpected, "--word-diff=color")
+	coloredDiff, err := utils.GitDiff(m.PrettyActual, m.PrettyExpected, "-u", "--color")
 	if err != nil {
 		return "Expected to match the provided JSON. however, there was an issue creating the diff:\n" + err.Error()
 	}
